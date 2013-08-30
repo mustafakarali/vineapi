@@ -88,7 +88,7 @@ class vineApi{
         return $this->request('timelines/posts/'. $postId)->data;
     }
 
-    protected function request( $url,  $data = array(), $costumRequest = null ){
+    protected function request( $url,  $data = array(), $customRequest = null ){
 
         if( !function_exists('curl_version') )
             exit( 'cURL is not installed on this server' );
@@ -110,8 +110,8 @@ class vineApi{
             curl_setopt($curl, CURLOPT_HTTPHEADER, array('vine-session-id: '.$this->userData->key));
         }
 
-        if( $costumRequest )
-            curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $costumRequest);
+        if( $customRequest )
+            curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $customRequest);
 
         $response = curl_exec($curl);
 
